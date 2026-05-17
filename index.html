@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Anime Legacy - Preserving the Golden Age of Animation"
+    />
+    <title>Anime Legacy | Home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  </head>
+  <body class="theme-dark">
+    <header class="navbar-global">
+      <div class="container navbar-container">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/img/logo.png" alt="Anime Legacy" />
+        </a>
+
+        <nav class="nav-links">
+          <ul role="menubar">
+            <li role="none">
+              <a role="menuitem" href="index.html" class="active"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="archive.html"
+                ><i class="fas fa-folder-open"></i> Archive</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="narrative-worlds.html"
+                ><i class="fas fa-globe"></i> Worlds</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="archetypes-styles.html"
+                ><i class="fas fa-paint-brush"></i> Archetypes</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="stories.html"
+                ><i class="fas fa-book"></i> Stories</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          class="search-trigger"
+          aria-label="Open Search"
+          id="btn-open-search"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </header>
+
+    <div
+      class="search-modal"
+      id="search-modal"
+      aria-hidden="true"
+      role="dialog"
+    >
+      <div class="search-modal-backdrop" id="search-backdrop"></div>
+      <div class="search-modal-content">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon-inside"></i>
+          <input
+            type="text"
+            id="global-search-input"
+            placeholder="Search by title, character, or theme..."
+            autocomplete="off"
+          />
+          <button
+            class="close-search"
+            id="btn-close-search"
+            aria-label="Close Search"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-results-container" id="search-results"></div>
+      </div>
+    </div>
+
+    <main class="main-layout">
+      <section class="hero-section">
+        <div class="container">
+          <h1 class="hero-title">
+            Preserving the <span class="text-accent">Golden Age</span> of
+            Animation
+          </h1>
+          <p class="hero-subtitle">
+            Explore the narrative depth, complex archetypes, and legendary
+            worlds of the anime medium.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Trending Picks</h2>
+            <div class="carousel-controls">
+              <button
+                class="carousel-btn prev"
+                aria-label="Scroll Left"
+                data-target="carousel-trending"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="carousel-btn next"
+                aria-label="Scroll Right"
+                data-target="carousel-trending"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="carousel-viewport">
+            <div
+              class="carousel-track"
+              id="carousel-trending"
+              data-feed="recommended"
+            ></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-global">
+      <div class="container">
+        <p>&copy; 2026 Anime Legacy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>

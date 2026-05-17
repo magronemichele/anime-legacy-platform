@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Analyze the recurring character archetypes and directing styles in anime history."
+    />
+    <title>Archetypes & Styles | Anime Legacy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  </head>
+  <body class="theme-dark">
+    <header class="navbar-global">
+      <div class="container navbar-container">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/img/logo.png" alt="Anime Legacy" />
+        </a>
+
+        <nav class="nav-links">
+          <ul role="menubar">
+            <li role="none">
+              <a role="menuitem" href="index.html"
+                ><i class="fas fa-home"></i> Home</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="archive.html"
+                ><i class="fas fa-folder-open"></i> Archive</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="narrative-worlds.html"
+                ><i class="fas fa-globe"></i> Worlds</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="archetypes-styles.html" class="active"
+                ><i class="fas fa-paint-brush"></i> Archetypes</a
+              >
+            </li>
+            <li role="none">
+              <a role="menuitem" href="stories.html"
+                ><i class="fas fa-book"></i> Stories</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          class="search-trigger"
+          aria-label="Open Search"
+          id="btn-open-search"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </header>
+
+    <div
+      class="search-modal"
+      id="search-modal"
+      aria-hidden="true"
+      role="dialog"
+    >
+      <div class="search-modal-backdrop" id="search-backdrop"></div>
+      <div class="search-modal-content">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon-inside"></i>
+          <input
+            type="text"
+            id="global-search-input"
+            placeholder="Search by title, character, or theme..."
+            autocomplete="off"
+          />
+          <button
+            class="close-search"
+            id="btn-close-search"
+            aria-label="Close Search"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-results-container" id="search-results"></div>
+      </div>
+    </div>
+
+    <main class="main-layout category-layout" data-category="archetype">
+      <div class="container">
+        <section
+          class="category-header text-center"
+          style="padding: 4rem 0 3rem"
+        >
+          <h1 class="hero-title">
+            <span class="text-accent">Archetypes</span> & Styles
+          </h1>
+          <p class="hero-subtitle">
+            Deconstruct the character models, visual metaphors, and directing
+            techniques that define the medium.
+          </p>
+        </section>
+
+        <section
+          class="category-grid"
+          id="category-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+          "
+        ></section>
+      </div>
+    </main>
+
+    <footer class="footer-global">
+      <div class="container">
+        <p>&copy; 2026 Anime Legacy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/js/app.js"></script>
+    <script type="module" src="assets/js/pages/category.js"></script>
+  </body>
+</html>
