@@ -41,7 +41,7 @@ class CategoryPage {
         }
 
         this.gridContainer.innerHTML = data.map(item => `
-            <article class="media-card" onclick="window.location.href='detail.html?id=${item.id}'">
+            <a class="media-card" href="detail.html?id=${encodeURIComponent(item.id)}">
                 <div class="card-image-wrapper">
                     <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy">
                 </div>
@@ -53,7 +53,7 @@ class CategoryPage {
                         Focus: ${escapeHTML(item.title)}
                     </p>
                 </div>
-            </article>
+            </a>
         `).join('');
     }
 }

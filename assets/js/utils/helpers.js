@@ -26,9 +26,8 @@ export function debounce(func, wait = 300) {
  * @param {string} str 
  * @returns {string}
  */
-export function escapeHTML(str) {
-    if (!str) return '';
-    const div = document.createElement('div');
-    div.innerText = str;
-    return div.innerHTML;
+export function escapeHTML(value) {
+    return String(value ?? '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
 }

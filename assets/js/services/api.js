@@ -25,7 +25,7 @@ export const API = {
      */
     async fetchById(id) {
         const data = await this.fetchAll();
-        return data.find(item => item.id === parseInt(id, 10)) || null;
+        return data.find(item => String(item.id) === String(id)) ?? null;
     },
 
     /**

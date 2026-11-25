@@ -22,26 +22,18 @@ export class Carousel {
         }
 
         this.container.innerHTML = this.data.map(item => `
-            <article class="media-card" data-id="${item.id}" tabindex="0" role="link">
+            <a class="media-card" href="detail.html?id=${encodeURIComponent(item.id)}">
                 <div class="card-image-wrapper">
                     <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy">
                 </div>
                 <div class="card-content">
                     <span class="card-type-badge">${escapeHTML(item.type)}</span>
                     <h3 class="card-title">${escapeHTML(item.name)}</h3>
-                    <p class="card-meta">${escapeHTML(item.genres[0] || 'Anime')} • ${item.year}</p>
+                    <p class="card-meta">${escapeHTML(item.genres?.[0] ?? 'Anime')} • ${escapeHTML(item.year)}</p>
                 </div>
-            </article>
+            </a>
         `).join('');
 
-        // Delegate click events for cards
-        this.container.addEventListener('click', (e) => {
-            const card = e.target.closest('.media-card');
-            if (card) {
-                const id = card.getAttribute('data-id');
-                window.location.href = `detail.html?id=${id}`;
-            }
-        });
     }
 
     initControls() {
@@ -56,13 +48,13 @@ export class Carousel {
 
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
-                this.container.parentElement.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                this.container.parentElement.scrollBy({ left: -scrollAmount, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
             });
         }
 
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
-                this.container.parentElement.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                this.container.parentElement.scrollBy({ left: scrollAmount, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
             });
         }
     }

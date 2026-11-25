@@ -24,21 +24,22 @@
     <link rel="icon" type="image/png" href="assets/img/logo.png" />
   </head>
   <body class="theme-dark">
+    <a class="skip-link" href="#detail-view-container">Skip to content</a>
     <header class="navbar-global">
       <div class="container navbar-container">
         <a href="index.html" class="brand-logo">
           <img src="assets/img/logo.png" alt="Anime Legacy" />
         </a>
 
-        <nav class="nav-links">
-          <ul role="menubar">
-            <li role="none">
-              <a role="menuitem" href="index.html"
+        <nav class="nav-links" aria-label="Main navigation">
+          <ul>
+            <li>
+              <a href="index.html"
                 ><i class="fas fa-home"></i> Home</a
               >
             </li>
-            <li role="none">
-              <a role="menuitem" href="archive.html"
+            <li>
+              <a href="archive.html"
                 ><i class="fas fa-folder-open"></i> Archive</a
               >
             </li>
@@ -49,6 +50,8 @@
           class="search-trigger"
           aria-label="Open Search"
           id="btn-open-search"
+          aria-controls="search-modal"
+          aria-expanded="false"
         >
           <i class="fas fa-search"></i>
         </button>
@@ -60,6 +63,8 @@
       id="search-modal"
       aria-hidden="true"
       role="dialog"
+      aria-modal="true"
+      aria-label="Search the archive"
     >
       <div class="search-modal-backdrop" id="search-backdrop"></div>
       <div class="search-modal-content">
@@ -68,6 +73,7 @@
           <input
             type="text"
             id="global-search-input"
+            aria-label="Search by title, genre or theme"
             placeholder="Search by title, character, or theme..."
             autocomplete="off"
           />
@@ -80,10 +86,11 @@
           </button>
         </div>
         <div class="search-results-container" id="search-results"></div>
+        <p class="sr-only" id="search-status" role="status"></p>
       </div>
     </div>
 
-    <main
+    <main tabindex="-1"
       class="main-layout"
       id="detail-view-container"
       style="padding: 3rem 0; display: none"

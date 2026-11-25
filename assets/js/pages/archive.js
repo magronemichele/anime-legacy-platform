@@ -4,6 +4,7 @@
  */
 import { API } from '../services/api.js';
 import { escapeHTML, debounce } from '../utils/helpers.js';
+import { filterEntries } from '../services/filter.js';
 
 class ArchivePage {
     constructor() {
@@ -21,7 +22,13 @@ class ArchivePage {
     async init() {
         try {
             this.allData = await API.fetchAll();
-            this.renderGrid(this.allData);
+            const params = new URLSearchParams(location.search);
+            this.searchInput.value = params.get('q') ?? '';
+            const type = params.get('type');
+            if (Array.from(this.typeSelect.options).some(option => option.value === type)) {
+                this.typeSelect.value = type;
+            }
+            this.filterData();
             this.bindEvents();
         } catch (error) {
             console.error("Failed to load archive data:", error);
@@ -40,24 +47,21 @@ class ArchivePage {
         this.resetBtn.addEventListener('click', () => {
             this.searchInput.value = '';
             this.typeSelect.value = 'all';
-            this.renderGrid(this.allData);
+            this.filterData();
         });
     }
 
     filterData() {
-        const query = this.searchInput.value.trim().toLowerCase();
-        const selectedType = this.typeSelect.value;
-
-        const filtered = this.allData.filter(item => {
-            const matchesQuery = item.title.toLowerCase().includes(query) || 
-                                 item.name.toLowerCase().includes(query) || 
-                                 (item.originalName && item.originalName.toLowerCase().includes(query));
-            
-            const matchesType = selectedType === 'all' || item.type === selectedType;
-
-            return matchesQuery && matchesType;
-        });
-
+        const query = this.searchInput.value.trim();
+        const type = this.typeSelect.value;
+        const filtered = filterEntries(this.allData, query, type);
+        const url = new URL(location.href);
+        if (query) url.searchParams.set('q', query);
+        else url.searchParams.delete('q');
+        if (type !== 'all') url.searchParams.set('type', type);
+        else url.searchParams.delete('type');
+        history.replaceState(null, '', url);
+        document.getElementById('archive-count').textContent = `${filtered.length} ${filtered.length === 1 ? 'entry' : 'entries'}`;
         this.renderGrid(filtered);
     }
 
@@ -74,7 +78,7 @@ class ArchivePage {
         }
 
         this.gridContainer.innerHTML = data.map(item => `
-            <article class="media-card" onclick="window.location.href='detail.html?id=${item.id}'">
+            <a class="media-card" href="detail.html?id=${encodeURIComponent(item.id)}">
                 <div class="card-image-wrapper">
                     <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy">
                 </div>
@@ -86,7 +90,7 @@ class ArchivePage {
                         Status: ${escapeHTML(item.status || 'Unknown')}
                     </p>
                 </div>
-            </article>
+            </a>
         `).join('');
     }
 }
